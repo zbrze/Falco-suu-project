@@ -1,0 +1,14 @@
+---
+- name: Add Falco chart repo
+  kubernetes.core.helm_repository:
+    name: falcosecurity
+    repo_url: "https://falcosecurity.github.io/charts"
+
+- name: Deploy latest version of Falco
+  kubernetes.core.helm:
+    name: falco
+    chart_ref: falcosecurity/falco
+    release_namespace: falco
+    create_namespace: true
+    values:
+      falcosidekick.enabled: true
