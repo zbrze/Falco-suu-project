@@ -1,0 +1,28 @@
+---
+- name: Build and push Docker image
+  hosts: localhost
+  vars:
+    dockerfile_dir: "docker-file"
+    image_name: "dvwa-dockerfile"
+    image_version: "latest"
+    registry: "docker.io"
+    registry_username: "zbrzezin"
+    registry_password: "xH%9qBX-_#7ba=4"
+  tasks:
+    - name: Build Docker image
+      docker_image:
+        path: "{{ dockerfile_dir }}"
+        name: "{{ image_name }}"
+        tag: "{{ image_version }}"
+        source: build
+    - name: Log in to Docker registry
+      docker_login:
+        username: "{{ registry_username }}"
+        password: "{{ registry_password }}"
+        registry: "{{ registry }}"
+    - name: Push Docker image to registry
+      docker_image:
+        name: "{{ image_name }}"
+        tag: "{{ image_version }}"
+        push: yes
+        repository: "{{ registry }}/{{ image_name }}"
