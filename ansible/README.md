@@ -1,5 +1,5 @@
 # Ansible
-Deploy app deployment and Falco:
+Deploy app deployment, Falco and logging tools (Elasticsearch, Kibana, Fluent-bit):
 ```
 ansible-playbook deploy.yaml
 ```
