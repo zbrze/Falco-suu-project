@@ -2,3 +2,4 @@
   roles:
     - app
     - falco
+    - logging-and-monitoring
