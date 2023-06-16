@@ -2,17 +2,13 @@
 - name: Deploy DVWA to Kubernetes
   hosts: localhost
   vars:
-    kubeconfig: " ~/.kube/config"
-    context: "arn:aws:eks:us-east-1:448323382078:cluster/DVWA_Cluster"
     namespace: "default"
-    image_name: "dvwa"
+    image_name: "vulnerables/web-dvwa"
     image_version: "latest"
     registry: "docker.io"
   tasks:
     - name: Create Deployment
       k8s:
-        kubeconfig: "{{ kubeconfig }}"
-        context: "{{ context }}"
         state: present
         definition:
           apiVersion: apps/v1
@@ -21,7 +17,7 @@
             name: dvwa
             namespace: "{{ namespace }}"
           spec:
-            replicas: 3
+            replicas: 1
             selector:
               matchLabels:
                 app: dvwa
@@ -38,8 +34,6 @@ image_version }}"
                       - containerPort: 80
     - name: Create Service
       k8s:
-        kubeconfig: "{{ kubeconfig }}"
-        context: "{{ context }}"
         state: present
         definition:
           apiVersion: v1
