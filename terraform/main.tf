@@ -27,7 +27,7 @@ resource "aws_eks_node_group" "worker-node-group" {
   node_group_name = "MyNodeGroup"
   node_role_arn   = var.role_arn
   subnet_ids   = [var.subnet_id_1, var.subnet_id_2, var.subnet_id_3]
-  instance_types = ["t3.small"]
+  instance_types = ["t3.medium"]
 
   scaling_config {
     desired_size = 2

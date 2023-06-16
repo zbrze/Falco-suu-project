@@ -1,0 +1,27 @@
+---
+- name: Deploy elasticsearch
+  kubernetes.core.helm:
+    name: elasticsearch
+    release_namespace: kube-logging
+    create_namespace: yes
+    release_state: present
+    chart_ref: elastic/elasticsearch
+    wait: yes
+
+- name: Deploy kibana
+  kubernetes.core.helm:
+    name: kibana
+    release_namespace: kube-logging
+    create_namespace: yes
+    release_state: present
+    chart_ref: elastic/kibana
+    wait: yes
+
+- name: Deploy fluent-bit
+  kubernetes.core.helm:
+    name: fluent-bit
+    release_namespace: kube-logging
+    create_namespace: yes
+    release_state: present
+    chart_ref: fluent/fluent-bit
+    wait: yes

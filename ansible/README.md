@@ -1,9 +1,13 @@
 # Ansible
-Deploy app deployment, Falco and logging tools (Elasticsearch, Kibana, Fluent-bit):
+Deploy Falco:
 ```
-ansible-playbook deploy.yaml
+ansible-playbook ./falco/playbook-falco.yaml
 ```
-Remove app and Falco:
+Deploy DVWA application:
 ```
-ansible-playbook delete.yaml
+ansible-playbook ./plain-dvwa/playbook-plain-dvwa.yaml
+```
+Deploy NGINX:
+```
+ansible-playbook ./nginx-webserver/playbook-nginx.yaml
 ```
